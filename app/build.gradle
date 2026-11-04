@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.shakecam'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.shakecam'
+        minSdk 29
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+
+    // Fixed key committed with the project so each new build installs
+    // over the old one without uninstalling. Personal sideload use only.
+    signingConfigs {
+        debug {
+            storeFile file('shakecam.jks')
+            storePassword 'shakecam'
+            keyAlias 'shakecam'
+            keyPassword 'shakecam'
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
